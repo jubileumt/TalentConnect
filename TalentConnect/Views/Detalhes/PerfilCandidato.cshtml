@@ -1,0 +1,32 @@
+﻿@model TalentConnect.Models.CandidatoViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentConnect - Menu Principal</title>
+    <link href="~/css/Principal.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>Bem vindo ao Talent Connect, @Model.Candidato.Nome</h1>
+
+    @if (!Model.TemFormacoes)
+    {
+        <p>Você ainda não adicionou nenhuma formação acadêmica.</p>
+    }
+    <a asp-controller="Bussola" asp-action="RegistrarFormacao" class="btn btn-primary">Adicionar Formação</a>
+    @if (!Model.TemExperiencia)
+    {
+        <p>Você ainda não adicionou nenhuma experiência profissional.</p>
+    }
+    <a asp-controller="Bussola" asp-action="RegistrarExperiencia" class="btn btn-primary">Adicionar Experiência</a>
+    @if (!Model.TemPortfolios)
+    {
+        <p>Você ainda não adicionou nenhum portfólio.</p>
+    }
+    <a asp-controller="Bussola" asp-action="RegistrarPortfolio" class="btn btn-primary">Adicionar Portfólio</a>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿@model TalentConnect.Models.Formacao
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Registrar suas formações</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+         
+        <form asp-action="Create" asp-controller="Formacao" id="formacaoForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div id="formacaoContainer">
+                <div class="form-group formacaoEntry">
+                    <label asp-for="Instituicao" class="control-label"></label>
+                    <input asp-for="Instituicao" name="Instituicoes" class="form-control" />
+                    <span asp-validation-for="Instituicao" class="text-danger"></span>
+
+                    <div class="form-group">
+                        <label asp-for="Grau" class="control-label"></label>
+                        <select asp-for="Grau" class="form-control" name="Graus">
+                            <option value="">Selecione um grau</option>
+                            <option value="Tec">Técnico</option>
+                            <option value="Bacha">Bacharelado</option>
+                            <option value="Licen">Licenciatura</option>
+                            <option value="Tecnó">Tecnólogo</option>
+                            <option value="Mestra">Mestrado</option>
+                            <option value="Doutor">Doutorado</option>
+                        </select>
+                        <span asp-validation-for="Grau" class="text-danger"></span>
+                    </div>
+
+
+                    <label asp-for="CampoEstudo" class="control-label"></label>
+                    <select asp-for="CampoEstudo" name="CamposEstudo" class="form-control">
+                        <option value="">Selecione um campo de estudo</option>
+                        <option value="ADM">Administração</option>
+                        <option value="BIO">Biológicas</option>
+                        <option value="DIR">Direito</option>
+                        <option value="ENGE">Engenharia</option>
+                        <option value="MAT">Matemática</option>
+                        <option value="TI">TI</option>
+                    </select>
+                    <span asp-validation-for="CampoEstudo" class="text-danger"></span>
+
+                    <label asp-for="DataInicio" class="control-label"></label>
+                    <input asp-for="DataInicio" name="DatasInicio" class="form-control" />
+                    <span asp-validation-for="DataInicio" class="text-danger"></span>
+
+                    <label asp-for="DataFim" class="control-label"></label>
+                    <input asp-for="DataFim" name="DatasFim" class="form-control" />
+                    <span asp-validation-for="DataFim" class="text-danger"></span>
+
+                    <input type="checkbox" name="Cursando" onclick="toggleDataFim(this)">
+                    <label asp-for="Cursando">Ainda Cursando</label>
+
+                    <button type="button" class="btn btn-danger" onclick="removeFormacaoEntry(this)">Remover</button>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="addFormacaoEntry()">Adicionar Formação</button>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div>
+
+</div>
+
+<script src="~/js/RegistrarFormacao.js" asp-append-version="true"></script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

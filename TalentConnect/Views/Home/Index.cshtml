@@ -1,0 +1,30 @@
+﻿@model TalentConnect.Models.Candidato
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Login</h2>
+
+
+<form asp-controller="Candidato" asp-action="Login">
+    <div class="form-group rounded">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group rounded">
+        <label asp-for="Senha" class="control-label"></label>
+        <input asp-for="Senha" type="password" class="form-control" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+   <p>RecuperarSenha?<a href="/Bussola/MudarSenha">Recuperar</a></p>
+               
+</form>
+<p>Não tem uma conta? <a href="/Bussola/RegistrarCandidato">Cadastre-se aqui</a></p> 
+
+<p>Não tem uma conta? <a href="/Bussola/RegistrarEmpresa">Cadastre-se aqui</a></p>

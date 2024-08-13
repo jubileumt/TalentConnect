@@ -1,0 +1,187 @@
+﻿@model TalentConnect.Models.Experiencia
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Multiple Experiences</h1>
+
+<h4>Experiencia</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" asp-controller="Experiencias" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div id="experienceContainer">
+                @model TalentConnect.Models.Experiencia
+
+                @{
+                    ViewData["Title"] = "Create";
+                }
+
+                <h1>Create Multiple Experiences</h1>
+
+                <h4>Experiencia</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-action="Create" asp-controller="Experiencias" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div id="experienceContainer">
+                                <div class="experience-item">
+                                    <h5>Experiência 1</h5>
+                                    <div class="form-group">
+                                        <label asp-for="Cargo" class="control-label"></label>
+                                        <select name="Cargos[]" class="form-control">
+                                            <option value="">Selecione o nível de cargo</option>
+                                            <option value="Estagiário">Estagiário</option>
+                                            <option value="Assistente">Assistente</option>
+                                            <option value="Analista">Analista</option>
+                                            <option value="Coordenador">Coordenador</option>
+                                            <option value="Gerente">Gerente</option>
+                                            <option value="Diretor">Diretor</option>
+                                            <option value="Executivo">Executivo</option>
+                                        </select>
+                                        <span asp-validation-for="Cargo" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Empresa" class="control-label"></label>
+                                        <input name="Empresas[]" class="form-control" />
+                                        <span asp-validation-for="Empresa" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DataInicio" class="control-label"></label>
+                                        <input type="date" name="DatasInicio[]" class="form-control" />
+                                        <span asp-validation-for="DataInicio" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DataFim" class="control-label"></label>
+                                        <input type="date" name="DatasFim[]" class="form-control" />
+                                        <span asp-validation-for="DataFim" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Descricao" class="control-label"></label>
+                                        <input name="Descricoes[]" class="form-control" />
+                                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="button" id="addExperience" class="btn btn-secondary" onclick="addExperienciaEntry()">Adicionar Mais Experiência</button>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                @section Scripts {
+                    <script src="~/js/RegistrarFormacao.js"></script>
+                    @{
+                        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                    }
+                }
+                <div class="experience-item">
+                    <h5>Experiência 1</h5>
+                    <div class="form-group">
+                        <label asp-for="Cargo" class="control-label"></label>
+                        <select name="Cargos[]" class="form-control">
+                            <option value="">Selecione o nível de cargo</option>
+                            <option value="Estagiário">Estagiário</option>
+                            <option value="Assistente">Assistente</option>
+                            <option value="Analista">Analista</option>
+                            <option value="Coordenador">Coordenador</option>
+                            <option value="Gerente">Gerente</option>
+                            <option value="Diretor">Diretor</option>
+                            <option value="Executivo">Executivo</option>
+                        </select>
+                        <span asp-validation-for="Cargo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Empresa" class="control-label"></label>
+                        <input name="Empresas[]" class="form-control" />
+                        <span asp-validation-for="Empresa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataInicio" class="control-label"></label>
+                        <input type="date" name="DatasInicio[]" class="form-control" />
+                        <span asp-validation-for="DataInicio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataFim" class="control-label"></label>
+                        <input type="date" name="DatasFim[]" class="form-control" />
+                        <span asp-validation-for="DataFim" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descricao" class="control-label"></label>
+                        <input name="Descricoes[]" class="form-control" />
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="addExperience" class="btn btn-secondary">Adicionar Mais Experiência</button>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var experienceIndex = 1;
+
+            $('#addExperience').click(function () {
+                experienceIndex++;
+                var experienceItem = `
+                                   <div class="experience-item">
+            <h5>Experiência ${experienceIndex}</h5>
+            <div class="form-group">
+                <label for="Cargos_${experienceIndex}">Cargo</label>
+                <select name="Cargos[]" class="form-control">
+                    <option value="Estagiário">Estagiário</option>
+                    <option value="Júnior">Júnior</option>
+                    <option value="Pleno">Pleno</option>
+                    <option value="Sênior">Sênior</option>
+                    <option value="Líder">Líder</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Diretor">Diretor</option>
+                    <option value="Executivo">Executivo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Empresas_${experienceIndex}">Empresa</label>
+                <input name="Empresas[]" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="DatasInicio_${experienceIndex}">Data de Início</label>
+                <input type="date" name="DatasInicio[]" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="DatasFim_${experienceIndex}">Data de Fim</label>
+                <input type="date" name="DatasFim[]" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Descricoes_${experienceIndex}">Descrição</label>
+                <input name="Descricoes[]" class="form-control" />
+            </div>
+        </div>
+
+                $('#experienceContainer').append(experienceItem);
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
